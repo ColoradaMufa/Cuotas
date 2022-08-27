@@ -56,4 +56,9 @@ function precio_en_cuotas() {
         );
     }
 }
+
+let nuevaCuota = cuota_producto.push('Cuota-18')
+
+// creo que lo hice mal jaja no entendi muy bien
+
 console.log(precio_en_cuotas());

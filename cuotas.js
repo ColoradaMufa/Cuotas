@@ -12,53 +12,38 @@ function precio_total(precio_producto, cantidad_de_productos) {
     return costo;
 }
 
-function precio_en_cuotas() {
-    if (cuota_producto == 3) {
-        let porcentaje_en_3_cuotas = 
-        (precio_total(precio_producto, cantidad_de_productos) * 15) / 100;
-        let precio_final =
-         precio_total(precio_producto, cantidad_de_productos) + porcentaje_en_3_cuotas;
+function precio_en_cuotas(precio_producto, cantidad_de_productos){
+    let porcentaje_en_cuotas =
+        (precio_total(precio_producto, cantidad_de_productos));
+    let precio_final =
+        precio_total(precio_producto, cantidad_de_productos) + porcentaje_en_cuotas;
+
+    if(cuota_producto == 3) {
+        return (
+            "El precio final de " +
+            producto +
+            "es de $" +
+            precio_final * 1.15
+        );
+    }
+    else if(cuota_producto == 6 ) {
         return (
             "El precio final de " +
             producto +
             " es de $" +
-            precio_final
+            precio_final * 1.30
         );
     }
-}
-
-function precio_en_cuotas() {
-    if (cuota_producto == 6) {
-        let porcentaje_en_6_cuotas = 
-        (precio_total(precio_producto, cantidad_de_productos) * 15) / 100;
-        let precio_final =
-         precio_total(precio_producto, cantidad_de_productos) + porcentaje_en_6_cuotas;
+    else if (cuota_producto == 12 ) {
         return (
-            "El precio final de " +
-            producto +
-            " es de $" +
-            precio_final
+        "El precio final de " +
+        producto +
+        " es de $" +
+        precio_final * 1.60
         );
     }
 }
 
-function precio_en_cuotas() {
-    if (cuota_producto == 12) {
-        let porcentaje_en_12_cuotas = 
-        (precio_total(precio_producto, cantidad_de_productos) * 15) / 100;
-        let precio_final =
-         precio_total(precio_producto, cantidad_de_productos) + porcentaje_en_12_cuotas;
-        return (
-            "El precio final de " +
-            producto +
-            " es de $" +
-            precio_final
-        );
-    }
-}
+console.log(precio_en_cuotas(precio_producto, cantidad_de_productos));
 
-let nuevaCuota = cuota_producto.push('Cuota-18')
-
-// creo que lo hice mal jaja no entendi muy bien
-
-console.log(precio_en_cuotas());
+console.log(precio_total(precio_producto, cantidad_de_productos))

@@ -1,51 +1,101 @@
-let objeto = [
-    {
-        nombre: "moños",
-        precio: 450,
-        cantidad: 0,
-        cuotas: '',
-        total: '',
-    },
-    {
-        nombre: "buzo",
-        precio: 2350,
-        cantidad: 0,
-        cuotas: '',
-        total: '',
-    },
-    {
-        nombre: "ruana",
-        precio: 1700,
-        cantidad: 0,
-        cuotas: '',
-        total: '',
-    }
-]
 
-let producto = prompt(`Ingrese el producto - Moño - Buzo Ruana`);
-for (let i = 0; i < objeto.length; i++) {
-    if (objeto[i].nombre == producto) {
-        let cantidad_de_productos = parseInt(prompt("Indique la cantidad que desea comprar"));
-        objeto[i].cantidad = cantidad_de_productos;
-        let cuota_producto = parseInt(prompt("Indique la cantidad de cuotas, 3/6/12"));
-        if (cuota_producto == 0) {
-            alert(precio_total(objeto[i].precio, objeto[i].cantidad));
-        } else {
-            precio_cuotas(objeto[i].cantidad, objeto[i].precio, cuota_producto, objeto[i].nombre)
+
+const recuadro = document.createElement('img')
+image.src  = imagen.recuadro;
+const app=new Vue({
+    el: '#app',
+    data: {
+        prodAll: [
+            {   producto: {
+                Nombre: "Ruana",
+                Id: 0,
+                Stock: 5,
+                Precio: 2350,
+                url,
+                mensaje:"Hay stock",
+                alertaProd: "alertaOk",
+                //Para reseteo
+                StockInicial: 5,
+                mensajeInicial:"Hay stock",
+                alertaInicial: "alertaOk"
+            }},
+            {producto: {
+                Nombre: "Buzo",
+                Id: 1,
+                Stock: 10,
+                Precio: 1700,
+                imagesrc: "/pic",
+                mensaje:"Hay stock",
+                alertaProd: "alertaOk",
+                //Para reseteo
+                StockInicial: 10,
+                mensajeInicial:"Hay stock",
+                alertaInicial: "alertaOk"
+            }},
+            {producto: {
+                Nombre: "Moño",
+                Id: 2,
+                Stock: 3,
+                Precio: 450,
+                Url: "",
+                mensaje:"Hay stock",
+                alertaProd: "alertaOk",
+                //Para reseteo
+                StockInicial: 3,
+                mensajeInicial:"Hay stock",
+                alertaInicial: "alertaOk"
+            }}
+        ],
+        unidad: 1,
+        sumaUnidades: 0,
+        sumaPrecios: 0,
+        carrito:[]
+    },
+    computed: {
+        listaCarrito() {
+            let salida='';
+                for (productoSel of this.carrito) {
+                    salida += productoSel;
+                }
+                salida += '';
+                //console.log;  
+                return salida;
+        }
+    },
+    methods: {
+        agregaProd(evento){
+            console.log('Id es ' + evento.target.id);
+            let target = evento.target.id
+            let producto = this.prodAll[target].producto
+            
+            if(producto.Stock>0) { 
+                producto.Stock -= 1;
+                this.sumaUnidades += 1;
+                this.sumaPrecios += producto.Precio;
+
+                let = elemento= {
+                nombre: producto.Nombre,
+                cantidad:this.unidad,
+                valor:"$ " + producto.Precio
+                }
+                this.carrito.push(elemento);
+            }
+            if (producto.Stock<=0) {
+                producto.mensaje="No hay stock disponible";
+                producto.alertaProd="alertaNok"
+            }
+            
+        },
+        limpiarCarrito(){
+            this.carrito=[];
+            this.sumaUnidades = 0;
+            this.sumaPrecios = 0;
+
+            for (item in this.prodAll) {
+                this.prodAll[item].producto.Stock = this.prodAll[item].producto.StockInicial;
+                this.prodAll[item].producto.mensaje = this.prodAll[item].producto.mensajeInicial;
+                this.prodAll[item].producto.alertaProd = this.prodAll[item].producto.alertaInicial;
+            }
         }
     }
-}
-
-function precio_total(precio, cantidad) {
-    return precio * cantidad;
-}
-
-function precio_cuotas(cantidad, precio, cuota, nombre) {
-    if (cuota == 3) {
-        return (alert("El precio final de " + nombre + " es de $ " + ((cantidad * precio) * 1.15) / cuota))
-    } else if (cuota == 6) {
-        return (alert("El precio final de " + nombre + " es de $ " + ((cantidad * precio) * 1.30) / cuota))
-    } else if (cuota == 12) {
-        return (alert("El precio final de " + nombre + " es de $ " + ((cantidad * precio) * 1.60) / cuota))
-    }
-}
+})

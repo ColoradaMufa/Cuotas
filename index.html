@@ -4,11 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- link css -->
+        <link rel="stylesheet" href="./css/style.css">
     <title>cuotas</title>
 </head>
 <body>
     
-<script src="cuotas.js"></script>
+<!--<script src="cuotas.js"></script> -->
+
+<div id="app">
+
+    <div class="row">
+        <!--Columna Productos-->
+        <div class="columna">
+            <h3>Productos disponibles</h3>
+            <div class="recuadro" v-for="item in prodAll">
+                <img :src="/img/buzo4.jpg">
+                <ul>
+                    <li><b>Nombre:</b> {{item.producto.Nombre}}</li>
+                    <li><b>Precio:</b>  {{item.producto.Precio}}</li>
+                    <button v-bind:id="item.producto.Id" @click="agregaProd($event)">Agregar al carrito</button>
+                    <p :class="item.producto.alertaProd">{{item.producto.mensaje}}</p>
+                </ul>
+            </div>
+        </div>
+
+        <!--Carrito-->
+        <div class="columna">
+            <div class="calculos">
+                <h3>Carrito de compra</h3>
+                <!--Tabla -->
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Producto</td>
+                            <td>Cantidad</td>
+                            <td>Valor</td>
+                        </tr>
+                    </thead>
+                    <tr v-for="(item, i) in carrito">
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.cantidad}}</td>
+                        <td>{{item.valor}}</td>
+                    </tr>
+                    <tfoot>
+                        <tr><td><b>TOTAL:</b></td><td>{{sumaUnidades}}</td><td>$ {{sumaPrecios}}</td></tr>
+                    </tfoot>
+                </table>
+                <button class="btn" @click="limpiarCarrito">Limpiar carrito</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 </body>
 </html>

@@ -1,90 +1,16 @@
-    .body {
+    body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: rgb(158, 210, 198);
+}
+.anadirAlCarrito{
+    background-color: azure;
+    border: 1px solid black ;
+    width: 75px;
+    border-radius: 10px;
 }
 
-h3 {margin-bottom:5px}
-a{text-decoration:underline; color:blue; cursor: pointer;}
-a:hover{text-decoration:none}
-li {margin-bottom:7px}
-small {color: #666; margin-bottom:10px}
-.row {
-    display: flex;
-    flex-direction: row;
-    background-color:Snow;
-}
-.columna {
-    padding:10px;
-    width:50%;
-}
-.calculos {
-    border-radius:6px;
-    background-color:SeaShell;
-    border: 1px solid orange;
-    font-size:14px;
-    padding:10px;
-    width:auto;
-    height:90%;
-    margin: 40px 0;
-}
-.recuadro {
-    max-width:500px;
-    padding:10px;
-    border-radius:6px;
-    background-color:white;
-    border: 1px solid deepskyblue;
-    font-size:14px;
-    margin: 10px 5px;
-    display: flex;
-    flex-direction: row;
-    align-content: flex-start;
-    align-items: flex-start;
-}
-
-input {
-    margin:5px;
-}
-
-button {
-    padding: 5px 10px;
-    background-color: DarkSlateBlue;
-    border-radius: 3px;
-    color: white;
-    margin: 10px 0;
-    border: 0;
-    cursor: pointer;
-}
-button:hover {
-    background-color: MidnightBlue;
-}
-.btn {
-    background-color: #fafafa;
-    border-radius: 3px;
-    color: black;
-    border: 1px solid #666;
-    float:right;
-}
-.btn:hover {
-    background-color: #dedede;
-}
-
-p {width: fit-content; font-weight:600; padding:10px}
-.alerta {
-    background-color: lavender;
-    padding:3px 5px;  
-}
-table {width:100%}
-td {border:1px solid #999; background-color: white;padding:3px}
-td {
-    width:25%;
-}
-td:first-child {
-    width:50%
-}
-thead td, tfoot td {
-    background-color: PeachPuff;
-}
-thead td {
-    font-weight: bold;
+.anadirAlCarrito:hover{
+    background-color: blueviolet;
 }

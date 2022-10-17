@@ -1,97 +1,107 @@
-const productos = [
-    {
-        id: 1,
-        nombre: "Buzos",
-        precio: 2350,
-        cantidad: 1,
-        imagen: "/img/buzo4.jpg",
-        cuotas: '',
-        total: '',
-    },
-    {
-        id: 2,
-        nombre: "Ruana",
-        precio: 1700,
-        cantidad: 1,
-        imagen: "/img/RUANA5.jpeg",
-        cuotas: '',
-        total: '',
-    },
-    {
-        id: 3,
-        nombre: "Moño",
-        precio: 450,
-        cantidad: 1,
-        imagen: "/img/MONIO6.jpeg",
-        cuotas: '',
-        total: '',
-    }
-]
-//------------------------Declaracion de array------------------------
-let carrito = [];
-//------------------------Llamado para cargar los productos-----------
-mostrarProductos(productos);
-//--------------------------Selecciones-------------------------------
-const muestraCarrito = document.querySelectorAll('button#anadirAlCarritoId')
+//variables
+let allContainerCart = document.querySelector('.products');
+let containerBuyCart = document.querySelector('.card-items');
+let priceTotal = document.querySelector('.price-total')
+let amountProduct = document.querySelector('.count-product');
 
-// ------------------------ Eventos------------------------------------
 
-for (const muestra of muestraCarrito) {
-    muestra.addEventListener("click", mostrandoCarrito);
+let buyThings = [];
+let totalCard = 0;
+let countProduct = 0;
+
+//functions
+loadEventListenrs();
+function loadEventListenrs(){
+    allContainerCart.addEventListener('click', addProduct);
+
+    containerBuyCart.addEventListener('click', deleteProduct);
 }
 
-//------------------------- Funcionalidades----------------------------
+function addProduct(e){
+    e.preventDefault();
+    if (e.target.classList.contains('btn-add-cart')) {
+        const selectProduct = e.target.parentElement; 
+        readTheContent(selectProduct);
+    }
+}
 
-function mostrarProductos(productos) {
-    productos.forEach((producto) => {
-        let div = ` <div class="producto_general">
-        <h3>${producto.nombre}</h3>
-            <img class="" src="${producto.imagen}"" alt="">
-            <div>
-                <button onclick="agregarAlCarrito(${producto.id})" class="anadirAlCarrito" id="anadirAlCarritoId">Añadir</button>
-                <p>$ ${producto.precio}</p>
+function deleteProduct(e) {
+    if (e.target.classList.contains('delete-product')) {
+        const deleteId = e.target.getAttribute('data-id');
+
+        buyThings.forEach(value => {
+            if (value.id == deleteId) {
+                let priceReduce = parseFloat(value.price) * parseFloat(value.amount);
+                totalCard =  totalCard - priceReduce;
+                totalCard = totalCard.toFixed(2);
+            }
+        });
+        buyThings = buyThings.filter(product => product.id !== deleteId);
+        
+        countProduct--;
+    }
+    //FIX: El contador se quedaba con "1" aunque ubiera 0 productos
+    if (buyThings.length === 0) {
+        priceTotal.innerHTML = 0;
+        amountProduct.innerHTML = 0;
+    }
+    loadHtml();
+}
+
+function readTheContent(product){
+    const infoProduct = {
+        image: product.querySelector('div img').src,
+        title: product.querySelector('.title').textContent,
+        price: product.querySelector('div p span').textContent,
+        id: product.querySelector('a').getAttribute('data-id'),
+        amount: 1
+    }
+
+    totalCard = parseFloat(totalCard) + parseFloat(infoProduct.price);
+    totalCard = totalCard.toFixed(2);
+
+    const exist = buyThings.some(product => product.id === infoProduct.id);
+    if (exist) {
+        const pro = buyThings.map(product => {
+            if (product.id === infoProduct.id) {
+                product.amount++;
+                return product;
+            } else {
+                return product
+            }
+        });
+        buyThings = [...pro];
+    } else {
+        buyThings = [...buyThings, infoProduct]
+        countProduct++;
+    }
+    loadHtml();
+    //console.log(infoProduct);
+}
+
+function loadHtml(){
+    clearHtml();
+    buyThings.forEach(product => {
+        const {image, title, price, amount, id} = product;
+        const row = document.createElement('div');
+        row.classList.add('item');
+        row.innerHTML = `
+            <img src="${image}" alt="">
+            <div class="item-content">
+                <h5>${title}</h5>
+                <h5 class="cart-price">${price}$</h5>
+                <h6>Amount: ${amount}</h6>
             </div>
-        </div>
-    `
-        contenedorProductos.innerHTML += div;
+            <span class="delete-product" data-id="${id}">X</span>
+        `;
+
+        containerBuyCart.appendChild(row);
+
+        priceTotal.innerHTML = totalCard;
+
+        amountProduct.innerHTML = countProduct;
     });
 }
-
-function agregarAlCarrito(itemId) {
-    const prod = productos.find((prod) => prod.id === itemId)
-    carrito.length === 0 ? carrito.push(prod) : null;
-    let cont = 0;
-    for (let i = 0; i < carrito.length; i++) {
-        if (carrito[i].id == prod.id) {
-            cont = cont + 1;
-        }
-    }
-    if (cont == 0) {
-        carrito.push(prod)
-    } else {
-        for (let i = 0; i < carrito.length; i++) {
-            if (carrito[i].id == prod.id) {
-                carrito[i].cantidad += 1;
-            }
-        }
-    }
-}
-
-function mostrandoCarrito() {
-    carrito.forEach(carrito => {
-        let mostrar = `<p>${carrito.nombre}</p>
-        <p>$ ${carrito.precio} </p>
-        <div class="cantidad">
-        <button class="boton_incremento" id="boton_incremento">-</button>
-        <p class="" id="">${carrito.cantidad}</p>
-        <button class="boton_decremento" id="boton_decremento">+</button>
-        </div>`
-        muestra_carrito.innerHTML += mostrar;
-    })
-}
-
-
-function actualizarPrecioFinal() {
-    precioFinal.innertText = carrito.reduce((acc, producto) => acc += producto.precio * producto.cantidad, 0);
-
-};
+ function clearHtml(){
+    containerBuyCart.innerHTML = '';
+ }

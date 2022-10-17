@@ -1,30 +1,135 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/svg+xml" href="./images/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- link css-->
+    <title>Pipita Accesorios</title>
     <link rel="stylesheet" href="./css/style.css">
-    <title>cuotas</title>
+    
 </head>
-
 <body>
-    <header class="main_header">
-        <h1>CARRITO DE COMPRAS</h1>
+    <header>
+        <div class="header-section container">
+            <img class="logo" src="./img/fotoprincipal.png" alt="">
+            <div>
+                <img onmouseover="showCart(this)" class="cart" src="./img/cart.png" alt="">
+                <p class="count-product">0</p>
+            </div>
+            <div class="cart-products" id="products-id">
+                <p class="close-btn" onclick="closeBtn()">X</p>
+                <div class="card-items">
+                </div>
+                <h2>Total: <strong class="price-total">0</strong> $</h2>
+            </div>
+        </div>
     </header>
-    <div class="container">
-        <div id="contenedorProductos">
-
+    <section class="container">
+        <div class="products">
+            <div class="carts">
+                <div>
+                    <img src="./img/RUANA 2.jpeg" alt="">
+                    <p><span>1.700</span>$</p>
+                </div>
+                <p class="title">Ruana</p>
+                <a href="" data-id="1" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/RUANA8.jpeg" alt="">
+                    <p><span>1.700</span>$</p>
+                </div>
+                <p class="title"> Ruana</p>
+                <a href="" class="btn-add-cart" data-id="2">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/RUANA9.jpeg" alt="">
+                    <p><span>1.700</span>$</p>
+                </div>
+                <p class="title"> Ruana</p>
+                <a href="" data-id="3" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/RUANA3.jpeg" alt="">
+                    <p><span>1.700</span>$</p>
+                </div>
+                <p class="title"> Ruana</p>
+                <a href="" data-id="4" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/MONIO6.jpeg" alt="">
+                    <p><span>450</span>$</p>
+                </div>
+                <p class="title"> Moños</p>
+                <a href="" data-id="5" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/MONIO4.jpeg" alt="">
+                    <p><span>450</span>$</p>
+                </div>
+                <p class="title"> Moños</p>
+                <a href="" data-id="6" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/MONIO1.jpeg" alt="">
+                    <p><span>450</span>$</p>
+                </div>
+                <p class="title"> Moños</p>
+                <a href="" data-id="7" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/MONIO5.jpeg" alt="">
+                    <p><span>450</span>$</p>
+                </div>
+                <p class="title"> Moños</p>
+                <a href="" data-id="8" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/CINTURONES3.jpeg" alt="">
+                    <p><span>800</span>$</p>
+                </div>
+                <p class="title"> Cinturones </p>
+                <a href="" data-id="9" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/CINTURONES1.jpeg" alt="">
+                    <p><span>800</span>$</p>
+                </div>
+                <p class="title"> Cinturones </p>
+                <a href="" data-id="10" class="btn-add-cart">add to cart</a>
+            </div>
+            <div class="carts">
+                <div>
+                    <img src="./img/CINTURONES2.jpeg" alt="">
+                    <p><span>800</span>$</p>
+                </div>
+                <p class="title"> Cinturones </p>
+                <a href="" data-id="11" class="btn-add-cart">add to cart</a>
+            </div>
         </div>
+    </section>
 
-        <div class="muestra_carrito" id="muestra_carrito">
-            <h3>No hay productos para mostrar</h3>
-        </div>
-        <p id="precioFinal"> aca aparece algo</p>
-    </div>
-    <script src="cuotas.js"></script>
+    <footer>
+    </footer>
+
+    <script>
+        function showCart(x){
+            document.getElementById("products-id").style.display = "block";
+        }
+        function closeBtn(){
+             document.getElementById("products-id").style.display = "none";
+        }
+
+    </script>
+    <script src="./custom.js" ></script>
 </body>
-
 </html>

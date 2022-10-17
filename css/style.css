@@ -2,10 +2,10 @@ body{
     font-family: system-ui;
 }
 header{
-    background-color: #e4e4e8;
+    background-color: rgb(201, 153, 198) ;
     padding-top: 18px;
     padding-bottom: 18px;
-    box-shadow: 0 7px 8px -3px grey;
+    box-shadow: 0 7px 8px -3px rgb(105, 74, 103);
     position: fixed;
     width: 100%;
     margin-top: -10px;
@@ -33,13 +33,13 @@ header{
     background-color: #fff;
     padding: 1px 6px;
     border-radius: 50%;
-    color: red;
+    color: rgb(158, 107, 151);
     font-weight: 700;
     font-family: system-ui;
     line-height: 18px;
 }
 .logo{
-    width: 164px;
+    width: 200px;
     height: 84px;
     cursor: pointer;
 }
@@ -91,7 +91,7 @@ header{
     position: absolute;
     top: 0;
     right: 0px;
-    background-color: red;
+    background-color: rgb(184, 115, 163);
     color: #fff;
     padding: 2px 7px 4px 21px;
     clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
@@ -102,7 +102,7 @@ header{
 .carts a{
     font-family: system-ui;
     text-decoration: none;
-    background: red;
+    background: rgb(184, 115, 163);
     padding: 9px 23px;
     color: #fff;
     font-size: 17px;
@@ -112,8 +112,8 @@ header{
 
 .carts a:hover{
     background: #fff;
-    color: red;
-    border: solid 2px red;
+    color: rgb(184, 115, 163);
+    border: solid 2px rgb(0, 0, 0);
     transition-duration: .3s;
 }
 
@@ -125,7 +125,7 @@ header{
 .cart-products .item{
     display: flex;
     align-items: center;
-    border-bottom: solid 2px red;
+    border-bottom: solid 2px rgb(2, 2, 2);
 }
 .cart-products .item .item-content{
     margin: 0 19px;
@@ -144,7 +144,7 @@ header{
     font-family: system-ui;
 }
 .cart-products .item span{
-    background-color: red;
+    background-color: rgb(3, 2, 2);
     padding: 0px 5px;
     border-radius: 50%;
     color: #fff;
@@ -158,7 +158,7 @@ header{
     font-weight: 700;
 }
 
-/*stye to btn close*/
+/* Boton */
 p.close-btn{
     top: -4px;
     right: 6px;
@@ -177,3 +177,15 @@ p.author a {
     font-weight: 700;
     color: #000;
 }
+
+.footer-content {
+    border-top: 1px solid linear-gradient(#f9ceee, white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    margin: 10px 0px 0px 0px;
+    background: linear-gradient(white, #f9ceee);
+    color: black; }
